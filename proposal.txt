@@ -1,0 +1,87 @@
+#################################
+# Splash - an audio visualizer! #
+#################################
+
+#################################
+# TP 2 UPDATE:					#
+# -Added singing comparison game#
+#  to structural plan			#
+# -Removed file load window cuz #
+#  it will be combined with main#
+#  window						#
+# -Might scrap metadata page if #
+#  there is not enough time 	#
+#################################
+
+################################
+# TP 3 UPDATE:				   #
+# -Scrapped ID3 tags page      #  
+# -Singing game too difficult  #
+#  went with microphone input  #
+#  instead                     #
+# -Help window is NOT interact-#
+#  ive because not enough time #
+#  :(                          # 
+################################
+
+........................
+. Project description: .
+........................
+'Splash' is a colorful audio visualizer that displays the FFTs of audio in a colorful, appealing manner.
+In addition, it will have a nice user interface that will contain the basic functionalities of audio players.
+
+.........................
+. Competitive Analysis: .
+.........................
+Before starting this project, I viewed many other audio visualizer TP's online to gather ideas. The best ones that I found were 'Pulse' by Devansh Kukreja and 'Burst' by Logan Kojiro. 'Pulse' mainly featured FFT and energy analysis to detect beats and deploy circles while 'Burst' focused on an aesthetic that combined both FFT analysis and raw audio analysis.
+
+My project will have a style similar to that of 'Pulse' (mainly the circle visualization). However,
+I plan to incorporate other featuers such a more intuitive interface for loading music, metadata display, and if there is time -- playlist management. Additionally, I have found that many other 15112 visualizer term projects did not have a good UI or help menu, so I am planning to have other splash pages explaining how to use my visualizer. 
+
+....................
+. Structural Plan: .
+....................
+As of now, I have the base visualizer down. I am hoping to add in some extra functionality before moving on to the UI.
+The structure of my project will be as follows:
+
++main ApplicationWindow class:
+	-will run all the other windows
+
++help window class
+	-will demonstrate how the audio visualizer works and what controls/functionalities it has
+	-pause, play, demo, forward 15, back 15, volume
+
++music comparison game
+	-will take in microphone input and compare to other player
+	-internal score will be based on differences in pitch
+
++metadata (ID3) window class
+	-will display the metadata (composer, artist, album image(?) in an intuitive manner)
+
++visualizer window class
+	-contains the basic functionality of the visualizer
+	-displays the frequency bands etc
+	
++other eyecandy display classes
+	-other aesthetics that I might add on
+	-currently only consists of the balloon class which are the balls that get displayed from the visualizer
+	 
+....................
+. Algorithmic Plan .
+....................
+The most flexible method of manipulating audio is to directly analyze the raw data. Because the native python package 'wave' does not support other file types other than .wav, I will be using pydub to decode other file formats into their raw bytes. 
+Each piece of data is two bytes in length, so I can convert the data into int16, in other words, values that reach a maximum of 256. From here, we can analyze the data using numpy's FFT method and partition the new values into subranges representing the audio spectrum.
+With these ranges, we can manipulate the bars on the Tkinter canvas to produce a colorful visualizer! :)
+
+..................	
+. Timeline Plan: .
+..................
+	-8.7.18 - Finish visualizer/buttons and aesthetics
+	-8.8.18 - Finish file system, begin music game
+	-8.9.18 - Finish metadata and begin help window
+	-8.10.18 - Finish help window and clean up project
+	
+.........................
+. Version Control Plan: .
+.........................
+Andy has set up a server on our floor that can run git. I will be pushing up my files to his server through GitKraken.
