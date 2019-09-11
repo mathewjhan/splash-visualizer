@@ -1,6 +1,8 @@
 # Splash Visualizer
 
-A dynamic music visualizer that bursts with colorful energy
+A dynamic music visualizer written in Python that takes in binary data from music files/livestream (.mp3, .wav, etc) and transforms it into colorful bursts of energy
+
+Carnegie Mellon University AP/EA 2018 Second Place!
 
 ## Requires
 
@@ -11,6 +13,6 @@ A dynamic music visualizer that bursts with colorful energy
 - pydub
 - numpy
 
-All of which can be installed through Pip
+All of which can be installed through `pip`
 
-Youtube demo: https://www.youtube.com/watch?v=8w0C430fNz4
+Youtube demo: [https://www.youtube.com/watch?v=8w0C430fNz4](https://www.youtube.com/watch?v=8w0C430fNz4)
