@@ -49,28 +49,6 @@ class TemporaryText(object):
             canvas.create_text(self.x, self.y, text=self.text, font=self.font, fill="red")
             self.timer+=1
 
-# god i wish i was mantek
-class WiseWordsOfMantek(TemporaryText):
-    def __init__(self, x, y, text):
-        self.manteksVocabulary = [
-        '\x4d\x61\x6e\x74\x65\x6b\x20\x73\x61\x79\x73\x3a\x20\x22\x46\x55\x43\x4b\x21\x22', 
-        '\x4d\x61\x6e\x74\x65\x6b\x20\x63\x72\x69\x65\x73\x20\x69\x6e\x20\x61\x6e\x67\x65\x72\x21', 
-        '\x22\x53\x68\x69\x74\x2e\x22\x20\x2d\x4d\x61\x6e\x74\x65\x6b', 
-        '\x22\x6f\x68\x20\x73\x68\x69\x74\x21\x22\x20\x2d\x6d\x61\x6e\x74\x65\x6b', 
-        '\x22\x69\x20\x77\x69\x6c\x6c\x20\x6e\x6f\x74\x20\x63\x75\x72\x73\x65\x20\x6c\x6f\x6c\x22', 
-        '\x22\x74\x61\x72\x61\x20\x70\x6c\x73\x20\x64\x6f\x6e\x74\x20\x66\x69\x72\x65\x20\x6d\x65\x22']
-        super().__init__(x, y, text)
-        self.font = ("Comic Sans MS", 50)
-
-    def resetTimer(self):
-        self.timer = 0
-        self.text = random.choice(self.manteksVocabulary)
-
-    def draw(self, canvas):
-        if self.timer < 30:
-            canvas.create_text(self.x, self.y, text=self.text, font=self.font, fill="red")
-            self.timer+=1
-
 # Custom button class for clickable buttons
 class Button(object):
     def __init__(self, x1, y1, x2, y2, text):
@@ -665,9 +643,6 @@ class ApplicationWindow(object):
         self.help = Help(self.width, self.height)
         self.vis = None
         self.plsLoad = TemporaryText(self.width/2, 2*self.height/7, "PLS LOAD SOMETHING")
-        self.manteksFury = WiseWordsOfMantek(self.width/2, self.height/2, "lolmantek")
-        self.isMantekCursing = False
-        self.manteksCooldown = 0
         
         self.root = Tk()
         self.root.title("Splash!")
@@ -747,9 +722,6 @@ class ApplicationWindow(object):
                     self.screen = "help"
 
     def keyPressed(self, event):
-        if event.keysym == "m" and not self.isMantekCursing:
-            self.manteksFury.resetTimer()
-            self.isMantekCursing = True
         if event.keysym == "BackSpace":
             self.screen = "home"
             self.endVisualizer()
@@ -757,11 +729,6 @@ class ApplicationWindow(object):
             self.vis.processEvent(event)
 
     def timerFired(self):
-        if self.isMantekCursing:
-            if self.manteksCooldown == 60:
-                self.isMantekCursing = False
-                self.manteksCooldown = 0
-            self.manteksCooldown += 1
         if self.screen == "vis": 
             self.vis.onTimerFired()
             if self.vis.isEmptyList():
@@ -773,7 +740,6 @@ class ApplicationWindow(object):
         if self.screen == "home": 
             self.home.draw(canvas)
             self.plsLoad.draw(canvas)
-            self.manteksFury.draw(canvas)
         if self.screen == "vis" and self.vis.isStarted: self.vis.draw(canvas)
         if self.screen == "help": self.help.draw(canvas)
 
