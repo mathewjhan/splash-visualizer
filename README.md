@@ -6,12 +6,12 @@ Carnegie Mellon University AP/EA 2018 Second Place!
 
 ## Requires
 
-- pyaudio
-- audioop
-- aubio
-- music21
-- pydub
-- numpy
+- `pyaudio`
+- `audioop`
+- `aubio`
+- `music21`
+- `pydub`
+- `numpy`
 
 All of which can be installed through `pip`
 
